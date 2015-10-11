@@ -255,9 +255,9 @@ def sample_abilities_diffusion_wrapper(args):
     # make sure each student gets a different random sequence
     id = multiprocessing.current_process()._identity
     if len(id) > 0:
-        np.random.seed([id[0], time.time() * 1e9])
+        np.random.seed([id[0], int(time.time() * 1e9) % (2 ** 32)])
     else:
-        np.random.seed([time.time() * 1e9])
+        np.random.seed([int(time.time() * 1e9) % (2 ** 32)])
 
     num_steps = options.sampling_num_steps
 
